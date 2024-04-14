@@ -39,6 +39,9 @@ const bookingSchema = new mongoose.Schema({
   endTime: {
     type: String
   },
+  totalTime: {
+    type: String
+  },
   totalPrice: {
     type: String,
     required: true

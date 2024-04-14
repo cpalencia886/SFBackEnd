@@ -1,41 +1,41 @@
 module.exports = {
-    calculatePrice: async function(space, duration) {
+    calculatePrice: async function(space, duration, time) {
         switch (duration) {
             case 'Monthly':
                 return getMonthlyRate(space);
             case 'Hourly':
-                return getHourlyRate(space);
+                return getHourlyRate(space, time);
             default:
                 return 'N/A';
         }
     }
 };
 
-function getHourlyRate(space) {
+function getHourlyRate(space, time) {
 
     switch (space) {
         case 'Executive Suite':
-            return '$45';
+            return  `$${40*time}`;
         case 'Sunlit Studio':
-            return '$20';
+            return `$${20*time}`;
         case 'Private Room':
-            return  '$25';
+            return   `$${25*time}`;
         case 'Window Table':
-            return '$15';
+            return `$${15*time}`;
         case 'Event Room':
-            return  '$50';
+            return  `$${50*time}`;
         case 'The Hive':
-            return '$20';
+            return  `$${20*time}`;
         case 'Hot Desk':
-            return '$5';
+            return  `$${5*time}`;
         case 'The Gathering':
-            return '$120';
+            return  `$${120*time}`;
         case 'Big Studio':
-            return '$75';
+            return  `$${75*time}`;
         case 'Mini Studio':
-            return '$30';
+            return `$${30*time}`;
         case 'Innovation Hub':
-            return '$60';
+            return `$${60*time}`;
         default:
             return '$0';
     }
