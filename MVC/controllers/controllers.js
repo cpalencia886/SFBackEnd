@@ -1,12 +1,17 @@
 const model = require('../model/model');
+const Booking = require('../model/bookingModel');
+const createRecord = require('./createRecord');
+
+
 
 module.exports = {
-    register: function(req, res) {
+    register : async function(req, res) {
         const { firstName, lastName, email, phone, address, space, duration, bookingDate, startTime, endTime } = req.body;
 
-        const totalPrice = model.calculatePrice(space, duration);
-
-        res.json({
+        const totalPrice = await model.calculatePrice(space, duration);
+        
+        let booking = await createRecord(Booking, 
+            {
             firstName: firstName,
             lastName: lastName,
             email: email,
@@ -19,5 +24,9 @@ module.exports = {
             endTime: endTime,
             totalPrice: totalPrice
         });
+
+        console.log(booking)
+
+        res.send(booking)
     }
 };
